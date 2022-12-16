@@ -71,9 +71,6 @@ class Musiwiz:
     }
 
     class Chord:
-
-        
-
         def __init__(self, notes, chord_name=""):
             self.notes = notes
             self.chord_name = chord_name
@@ -83,8 +80,6 @@ class Musiwiz:
                 play_note(note)
                 sleep(delay)
             sleep(2)
-
-        ##############################################
 
         def all_possible_chords():
 
@@ -113,8 +108,6 @@ class Musiwiz:
                     all_possible_chords[(tonic[:-1], tetrad_name)] = Musiwiz.Chord.create_chord(tonic[:-1], tetrad_name)
 
             return all_possible_chords
-
-        ##############################################
 
         def create_chord(tonic, chord_type):
             
@@ -149,8 +142,6 @@ class Musiwiz:
 
             return output
 
-        ##############################################
-
         def flat_or_sharp(self):
             # CHECK FOR '#' OR 'b'
 
@@ -170,8 +161,6 @@ class Musiwiz:
                     scale_flat_or_sharp = random.choice([Musiwiz.CHROMATIC_SCALE_SHARPS,Musiwiz.CHROMATIC_SCALE_FLATS])
 
             return copy.deepcopy(scale_flat_or_sharp)
-
-        ##############################################
 
         def intervals(self):
 
@@ -216,8 +205,6 @@ class Musiwiz:
 
             return output
 
-        ##############################################
-
         def get_chord_by_notes(self): 
 
             interval_indexes = []
@@ -242,20 +229,11 @@ class Musiwiz:
                         return f'{self.notes[0]} {chord_name}'
             return ' '.join(interval_output)
 
-        ##############################################
+os.system('cls')
+c1 = Musiwiz.Chord.create_chord("e", "major")
 
-#Musiwiz.Chord.all_possible_chords()
-#
-#for chord, notes in Musiwiz.Chord.all_possible_chords().items():
-#    chord = " ".join(list(map(str.capitalize, chord)))
-#    notes = " - ".join(list(map(str.title, notes)))
-#    print(f'{chord:<30} {notes}')
-#    sleep(0.01)
-
-
-c1 = Musiwiz.Chord(notes=['c','e','g','b'])
-c1.intervals()
-print(c1.get_chord_by_notes())
-c1.play(delay=0.1)
-#c1.play(delay=0.4)
+for note in c1:
+    play_note(note, delay=0.2)
+    print(note, end=" ")
+sleep(1.7)
 
